@@ -1,0 +1,51 @@
+/* pc */
+@media ( min-width: 1024px ) {
+
+}
+
+/* tablet */
+@media ( min-width: 740px) and ( max-width: 1023px) {
+
+    .content-list {
+        display: none;
+        visibility: hidden;
+    }
+
+    /* .search-place {
+        display: none;
+    } */
+
+    .menu-bar {
+        display: block;
+    } 
+
+}
+
+/* mobile */
+@media ( max-width: 739px ) {
+    .content-list {
+        display: none;
+        visibility: hidden;
+    }
+    
+    .content-list div {
+        display: none;
+        visibility: hidden;
+    }
+    
+    .search-place {
+        display: none;
+    }
+
+    .menu-bar {
+        display: block;
+    }
+
+    .text-box-content .MONA {
+        font-size: 65px;
+    }
+
+    .text-box-content .MONA-content {
+        font-size: 21px;
+    }
+}
