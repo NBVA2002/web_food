@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LAMB</title>
+    <title>CATEGORY</title>
     <link rel="stylesheet" href="./assets/css/styles2.css">
     <link rel="stylesheet" href="./assets/css/responsive.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -76,63 +76,63 @@
     </div>
 
     <div class="container d-flex" style="padding-top: 140px; ">
-        <div class="col-md-3">
-            <div class="category-nav">
-                <div style="text-align: center; 
-                            color: #FFFFFFCC; 
-                            font-size: 16px; 
-                            font-weight: 500; padding: 10px;
-                            border-top-left-radius: 20px;
-                            border-top-right-radius: 20px;
-                            background-color: #b92026;
-                            border-bottom: 1px solid #cdcdcd78;">
-                    CATEGORY
-                </div>
-                <a href="beef.html" class="category-item">
-                    <div>Beef</div>
-                </a>
-                <a href="lamb.html" class="category-item category-item-active">
-                    <div>Lamb</div>
-                </a>
-                <a href="salmon.html" class="category-item">
-                    <div>Salmon</div>
-                </a>
-                <a href="herring.html" class="category-item">
-                    <div>Herring</div>
-                </a>
-                <a href="spices.html" class="category-item">
-                    <div>Spices</div>
-                </a>
-                <a href="dairyproducts.html" class="category-item">
-                    <div>Dairy Products</div>
-                </a>
-                <a href="wine.html" class="category-item">
-                    <div>Wine</div>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-9 category-content">
-            <div class="d-flex">
-                <div class="col-md-3 p-2">
-                    <div class="category-content-item">
-                        <div>
-                            <img src="./assets/img/item/180418_Ginger_Pig_Rack_Lamb_36_960x960.webp"
-                                alt="">
-                        </div>
-                        <div class="d-flex flex-wrap justify-content-center" style="padding:10px">
-                            <div class="mt"
-                                style="font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                Rack Of Lamb ( 9 Bones Full Rack)
-                            </div>
-                            <div
-                                style="width: 100%; font-size: 17px; font-weight: 500;color: #b92026;text-align: center;">
-                                82.99$
-                            </div>
-                            <button class="btn btn-danger mt-2" onclick="addCart(3)">Add to my cart</button>
-                        </div>
+        <div class="col-md-7 cart-list">
+            <div id="payment-infomation" style="width: 100%; height: 100%; ">
+                <table id="cart-list" style="width: 100%; text-align: center;">
+                    <!-- Thẻ <tr> đại diện cho mỗi hàng -->
+                    <tr style="border-bottom: 2px solid #848484bd;">
+                        <!-- Thẻ <th> đại diện cho đầu cột hoặc đầu hàng -->
+                        <th class="col-md-12">PAYMENT INFORMATION</th>
+                    </tr>
+                </table>
+                <div class="d-flex">
+                    <div class="col-md-6">
+                        <span>First name</span>
+                        <input type="text" style="width: 95%; padding:10px">
+                    </div>
+                    <div class="col-md-6">
+                        <span>Last name</span>
+                        <input type="text" style="width: 100%; padding:10px">
                     </div>
                 </div>
+                <div>
+                    <span>Country/Region</span>
+                    <input type="text">
+                </div>
+                <div>
+                    <span>Address</span>
+                    <input type="text">
+                </div>
+                <div>
+                    <span>Postal code (optional)</span>
+                    <input type="text">
+                </div>
+                <div>
+                    <span>Province / City</span>
+                    <input type="text">
+                </div>
+                <div>
+                    <span>Phone number</span>
+                    <input type="number">
+                </div>
+                <div>
+                    <span>Email address</span>
+                    <input type="email">
+                </div>
             </div>
+        </div>
+        <div class="col-md-5" style="height: 500px; padding: 30px">
+            <div style="border-bottom: 2px solid #848484bd; font-weight: 500;">TOTAL PRICE</div>
+            <div class="d-flex justify-content-between p-3" style="font-size: 20px;">
+                <div>Total</div>
+                <div id="total-price" style="color: #dc3545;"></div>
+            </div>
+            <a href="order.html" style="text-decoration: none;">
+                <div class="d-flex justify-content-center align-items-center"
+                    style="width: 100%; background-color: #D26E4B; color: #fff; border: none; height: 40px;">
+                    PAY
+                </div>
+            </a>
         </div>
     </div>
 
@@ -180,8 +180,25 @@
         </div>
     </div>
 
+    <script>
+        var cart;
+        if (localStorage.getItem("cart") == null) {
+            cart = [];
+            localStorage.setItem("cart", JSON.stringify(cart));
+        } else {
+            cart = JSON.parse(localStorage.getItem("cart"));
+        }
 
+        var totalPriceHtml = document.getElementById("total-price");
 
+        totalPrice = 0
+
+        for (let i = 0; i < cart.length; i++) {
+            totalPrice += Number(cart[i].price)
+        }
+        totalPriceHtml.textContent = totalPrice + "$";
+
+    </script>
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>

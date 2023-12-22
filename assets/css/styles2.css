@@ -144,6 +144,12 @@ html {
 
 .about-banner {
     background: url('../img/banner/GettyImages-485208435_optimized.avif') top center / cover no-repeat;
+    height: 500px;
+}
+
+.about-banner2 {
+    background: url('../img/content/113d6ef253a383fddab2-scaled.jpg') center / cover no-repeat;
+    height: 500px;
 }
 
 .about-content {
@@ -211,4 +217,36 @@ html {
 
 .category-content-item:hover img {
     transform: scale(1.2);
+}
+
+.cart-list {
+    padding: 30px;
+}
+
+.cart-list td:hover {
+    color: #b92026;
+}
+
+.image-cart {
+    margin: 20px;
+    width: 76px;
+    height: 76px;
+}
+
+.name-cart {
+    text-align: start;
+}
+
+.price-cart {
+    color: #b92026;
+    font-weight: 500;
+}
+
+#payment-infomation > div {
+    height: 83px;
+}
+
+#payment-infomation > div >input {
+    width: 100%;
+    padding:10px
 }

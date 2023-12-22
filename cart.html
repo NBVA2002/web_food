@@ -76,11 +76,46 @@
     </div>
 
     <div class="container d-flex" style="padding-top: 140px; ">
-        <div class="col-md-7" style="height: 500px; background-color: #dc3545;">
-            
+        <div class="col-md-7 cart-list" style="height: 500px;">
+            <div style="width: 100%; height: 100%; overflow-y: scroll;">
+                <table id="cart-list" style="width: 100%; text-align: center;">
+                    <!-- Thẻ <tr> đại diện cho mỗi hàng -->
+                    <tr style="border-bottom: 2px solid #848484bd;">
+                        <!-- Thẻ <th> đại diện cho đầu cột hoặc đầu hàng -->
+                        <th class="col-md-3">PRODUCT</th>
+                        <th class="col-md-5"></th>
+                        <th class="col-md-3">PRICE</th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                    <!-- <tr>
+                    <td>
+                        <img src="./assets/img/item/009.png" class="image-cart" alt="">
+                    </td>
+                    <td>
+                        <div class="name-cart">Tên</div>
+                    </td>
+                    <td>
+                        <div class="price-cart">5000</div>
+                    </td>
+                    <td>
+                        <div><i class="fa-solid fa-x"></i></div>
+                    </td>
+                </tr> -->
+                </table>
+            </div>
         </div>
-        <div class="col-md-5" style="height: 500px; background-color: #000;">
-
+        <div class="col-md-5" style="height: 500px; padding: 30px">
+            <div style="border-bottom: 2px solid #848484bd; font-weight: 500;">TOTAL PRICE</div>
+            <div class="d-flex justify-content-between p-3" style="font-size: 20px;">
+                <div>Total</div>
+                <div id="total-price" style="color: #dc3545;"></div>
+            </div>
+            <a href="order.html" style="text-decoration: none;">
+                <div class="d-flex justify-content-center align-items-center"
+                    style="width: 100%; background-color: #D26E4B; color: #fff; border: none; height: 40px;">
+                    GO TO PAYMENTS
+                </div>
+            </a>
         </div>
     </div>
 
@@ -128,8 +163,69 @@
         </div>
     </div>
 
+    <script>
+        var cart;
+        if (localStorage.getItem("cart") == null) {
+            cart = [];
+            localStorage.setItem("cart", JSON.stringify(cart));
+        } else {
+            cart = JSON.parse(localStorage.getItem("cart"));
+        }
 
+        var tableElement = document.getElementById("cart-list");
+        var cart = JSON.parse(localStorage.getItem("cart"));
+        var totalPriceHtml = document.getElementById("total-price");
 
+        totalPrice = 0
+
+        for (let i = 0; i < cart.length; i++) {
+            var trElement = document.createElement("tr");
+
+            // Tạo thẻ td cho "Ảnh"
+            var tdImageElement = document.createElement("td");
+            var imgElement = document.createElement("img");
+            imgElement.src = cart[i].image;
+            imgElement.classList.add("image-cart")
+            tdImageElement.appendChild(imgElement);
+
+            // Tạo thẻ td cho "Tên"
+            var tdNameElement = document.createElement("td");
+            var divNameElement = document.createElement("div");
+            divNameElement.className = "name-cart";
+            divNameElement.textContent = cart[i].name;
+            tdNameElement.appendChild(divNameElement);
+
+            // Tạo thẻ td cho "5000"
+            var tdPriceElement = document.createElement("td");
+            var divPriceElement = document.createElement("div");
+            divPriceElement.className = "price-cart";
+            divPriceElement.textContent = cart[i].price + "$";
+            tdPriceElement.appendChild(divPriceElement);
+
+            // Tạo thẻ td cho icon
+            var tdIconElement = document.createElement("td");
+            var divIconElement = document.createElement("button");
+            divIconElement.className = "btn"
+            var iconElement = document.createElement("i");
+            iconElement.className = "fa-solid fa-x";
+            divIconElement.appendChild(iconElement);
+            divIconElement.onclick = function () { removeCart(i); };
+            tdIconElement.appendChild(divIconElement);
+
+            // Thêm tdNameElement, tdPriceElement và tdIconElement vào trElement
+            trElement.appendChild(tdImageElement);
+            trElement.appendChild(tdNameElement);
+            trElement.appendChild(tdPriceElement);
+            trElement.appendChild(tdIconElement);
+
+            // Thêm trElement vào tableElement
+            tableElement.appendChild(trElement);
+
+            totalPrice += Number(cart[i].price)
+        }
+        totalPriceHtml.textContent = totalPrice + "$";
+
+    </script>
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
